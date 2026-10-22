@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-color: #f7faf8;
+  color: #1e293b;
+  min-height: 100vh;
+}
+
+/* Background image layer: crisp, vibrant and clearly visible */
+.app-bg-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background-image: url('/oil-theme-bg.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  filter: saturate(1.05) contrast(1.02);
+  transform: translateZ(0);
+}
+
+/* Clear, balanced ambient overlay: protects text contrast in center while keeping the artwork clearly visible */
+.app-bg-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.45) 0%,
+    rgba(255, 255, 255, 0.28) 50%,
+    rgba(255, 255, 255, 0.14) 100%
+  );
+  pointer-events: none;
+  transition: background 0.3s ease;
+}
+
+/* Theme clarity variations */
+body[data-bg-clarity="vibrant"] .app-bg-overlay {
+  background: radial-gradient(
+    ellipse at center,
+    rgba(255, 255, 255, 0.22) 0%,
+    rgba(255, 255, 255, 0.10) 50%,
+    rgba(255, 255, 255, 0.04) 100%
+  );
+}
+
+body[data-bg-clarity="subtle"] .app-bg-overlay {
+  background: rgba(255, 255, 255, 0.68);
+}
+
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
